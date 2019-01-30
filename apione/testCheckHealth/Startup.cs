@@ -4,16 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Pivotal.Discovery.Client;
 using Steeltoe.Common.HealthChecks;
+using Steeltoe.Common.Http.Discovery;
+using Steeltoe.Discovery.Client;
+using Steeltoe.Discovery.Eureka;
 
-namespace apithree
+namespace testCheckHealth
 {
     public class Startup
     {
@@ -27,8 +28,27 @@ namespace apithree
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services.AddSingleton<IHealthContributor, CustomHealthContributor>();
+            //services.AddSingleton<IHealthCheckHandler, EurekaHealthCheckHandler>();
+            List<IHealthContributor> list = new List<IHealthContributor>();
+            list.Add(new CustomHealthContributor());
+            services.AddSingleton<IHealthCheckHandler>(new EurekaHealthCheckHandler(list));
+            //services.AddHealthActuator(Configuration);
+
+            services.AddSingleton<IClientService, ClientService>();
+            // Add Steeltoe Discovery Client service
             services.AddDiscoveryClient(Configuration);
+            // Add Steeltoe handler to container
+            services.AddTransient<DiscoveryHttpMessageHandler>();
+            var config = Configuration["Services:ClientService:Url"];
+            // Configure a HttpClient
+            services.AddHttpClient("client-api-values", c =>
+            {
+                c.BaseAddress = new Uri(config);
+            })
+                .AddHttpMessageHandler<DiscoveryHttpMessageHandler>()
+                .AddTypedClient<IClientService, ClientService>();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +69,9 @@ namespace apithree
             loggerFactory.AddDebug();
 
             app.UseHttpsRedirection();
+
+            // Add management endpoint into pipeline
+            //app.UseHealthActuator();
 
             app.UseMvc();
         }

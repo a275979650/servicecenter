@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apione", "apione\apione.csproj", "{FD2E7DDF-AB68-452F-89E5-2FB8DFD127A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testHealth", "apione\testHealth.csproj", "{FD2E7DDF-AB68-452F-89E5-2FB8DFD127A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apitwo", "apitwo\apitwo.csproj", "{864E4C01-E35E-4429-92A1-9D9D17C7B09F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apithree", "apithree\apithree.csproj", "{C3EFFFA4-DA67-4A8D-9A99-74EA69DD4451}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webapiService", "webapiService\webapiService.csproj", "{4B72AD2B-E25F-48A4-B312-5400DB458188}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "webapiService", "webapiService\webapiService.csproj", "{4B72AD2B-E25F-48A4-B312-5400DB458188}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testCheckHealth", "testCheckHealth\testCheckHealth.csproj", "{BBF27211-2E12-4D3C-A1FB-A0014D9EF0FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4B72AD2B-E25F-48A4-B312-5400DB458188}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B72AD2B-E25F-48A4-B312-5400DB458188}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B72AD2B-E25F-48A4-B312-5400DB458188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF27211-2E12-4D3C-A1FB-A0014D9EF0FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF27211-2E12-4D3C-A1FB-A0014D9EF0FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF27211-2E12-4D3C-A1FB-A0014D9EF0FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF27211-2E12-4D3C-A1FB-A0014D9EF0FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

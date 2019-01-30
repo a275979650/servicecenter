@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Steeltoe.Common">
+      <HintPath>..\lib\Steeltoe.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Steeltoe.Common.Http">
+      <HintPath>..\lib\Steeltoe.Common.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Steeltoe.Discovery.ClientCore">
+      <HintPath>..\lib\Steeltoe.Discovery.ClientCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Steeltoe.Discovery.EurekaBase">
+      <HintPath>..\lib\Steeltoe.Discovery.EurekaBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
